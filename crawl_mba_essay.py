@@ -94,7 +94,7 @@ def crawl_mba_essay(fid: str, filename: str, request):
 
 
 def run(playwright: Playwright, filename) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://thesis.fudan.edu.cn/")
