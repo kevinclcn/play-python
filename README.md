@@ -5,7 +5,7 @@
 ```bash
 pip install -r requirements.txt
 ```
-2. 打开vpn，登录 https://library.fudan.edu.cn/
+2. 打开vpn，登录 https://thesis.fudan.edu.cn/
 3. 搜索论文，获取想要下载的论文题目
 3. 运行程序
 ```bash

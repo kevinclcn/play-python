@@ -4,8 +4,6 @@ from fpdf import FPDF
 from PIL import Image
 from playwright.sync_api import Playwright, sync_playwright, expect, APIRequestContext
 from urllib.parse import urlparse, parse_qs
-sys.path.append(".")
-from pdf_ocr import pdf_ocr 
 
 def get_and_save_to_img(url: str, filename: str, request: APIRequestContext):
     response = request.get(url)
@@ -114,11 +112,8 @@ def run(playwright: Playwright, filename) -> None:
     parsed_url = urlparse(page2.url)
     query_params = parse_qs(parsed_url.query)
     fid = query_params["fid"][0]
-    
-    # crawl_mba_essay(fid, filename, headers=headers)
-    # images_in_dir_to_pdf(filename, f"{filename}.pdf")
 
-    # crawl_mba_essay(fid, filename, page2.context.request)
+    crawl_mba_essay(fid, filename, page2.context.request)
     images_in_dir_to_pdf(filename, f"{filename}.pdf")
 
     # ---------------------
@@ -139,6 +134,3 @@ if __name__ == "__main__":
     with sync_playwright() as playwright:
         run(playwright, filename=filename)
 
-    # print("start to ocr pdf file")
-    
-    # pdf_ocr(f"{filename}.pdf", f"{filename}_ocr.pdf")

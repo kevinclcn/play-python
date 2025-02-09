@@ -1,11 +1,11 @@
 import pytesseract
+import sys
 from pdf2image import convert_from_path
-from pdfminer.high_level import extract_text
-from pikepdf import Pdf, Page
+from pikepdf import Pdf
 from io import BytesIO
-from PIL import Image
 
 def pdf_ocr(pdf_path: str, output_pdf_path: str):
+    # 需要安装pytesseract
     # Convert PDF to images
     images = convert_from_path(pdf_path)
 
@@ -24,3 +24,13 @@ def pdf_ocr(pdf_path: str, output_pdf_path: str):
     # Save final PDF
     pdf.save(output_pdf_path)
     pdf.close()
+
+if __name__ == "__main__":
+    arg_count = len(sys.argv) - 1
+    if arg_count == 0:
+        print("Usage: crawl_mba_essay.py <filename>")
+        sys.exit(1)
+    
+    filename = sys.argv[1]
+    
+    pdf_ocr(f"{filename}.pdf", f"{filename}_ocr.pdf")
